@@ -51,7 +51,7 @@ function startup() {
     })
 };
 
-//Department
+//Add Department
 function addDepartment() {
   inquirer
     .prompt([
@@ -67,6 +67,7 @@ function addDepartment() {
     })
 };
 
+//View Department
 function viewDepartment() {
   connection.query("SELECT * FROM department", (err, data) => {
     console.table(data);
@@ -74,7 +75,7 @@ function viewDepartment() {
   startup();
 }
 
-//Role
+// Add Role
 function addRole() {
   let deptName = [];
   connection.query('SELECT * FROM department', function (err, results) {
@@ -115,17 +116,17 @@ function addRole() {
   })
 };
 
+//View Roles
 function viewRoles() {
   connection.query("SELECT * FROM role", (err, data) => {
     console.table(data);
   })
   startup();
 }
-//Employee
+
+//Add Employee
 function addEmployee() {
   connection.query('SELECT * FROM role', function (err, results) {
-
-
     inquirer
       .prompt([{
         type: "input",
@@ -153,9 +154,10 @@ function addEmployee() {
         connection.query('INSERT INTO employee (firstName, lastName, role_id) VALUES (?,?,?)', [answers.firstName, answers.lastName, answers.roleID]);
         startup();
       })
-
   })
 }
+
+//View Employee
 function viewEmployee() {
   connection.query("SELECT * FROM employee", (err, data) => {
     console.table(data);
@@ -170,5 +172,12 @@ connection.connect(function (err) {
 });
 
 //Update Employee Roles
+function updateEmployeeRoles() {
+ connection.query("UPDATE employee FROM firstName WHERE ?", [answer.firstName]), 
+    function(err, res) {
+      if (err) throw err;
+      startup();
+    }
 
-function updateEmployeeRoles()
+}
+

@@ -23,7 +23,6 @@ CREATE TABLE employee(
     firstName VARCHAR(30) NULL,
   lastName VARCHAR(30) NULL,
   role_id INT,
-  manager_id INT,
   PRIMARY KEY (id),
   FOREIGN KEY(role_id) REFERENCES role(id)
 );
@@ -31,9 +30,18 @@ CREATE TABLE employee(
 INSERT INTO department (name)
 VALUES ("Engineering");
 
-INSERT INTO role (title)
-VALUES ("Software Engineer");
+INSERT INTO department (name)
+VALUES ("Teaching");
 
-INSERT INTO employee (firstName, lastName)
-VALUES ("Billie", "Eilish");
+INSERT INTO role (title, salary)
+VALUES ("Software Engineer", "100000");
+
+INSERT INTO role (title, salary)
+VALUES ("World History Teacher" ,"200");
+
+INSERT INTO employee (firstName, lastName, role_id)
+VALUES ("Billie", "Eilish", "2");
+
+INSERT INTO employee (firstName, lastName, role_id)
+VALUES ("Pearson", "Cassy", "1");
 
